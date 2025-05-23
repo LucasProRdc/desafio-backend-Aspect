@@ -23,9 +23,13 @@ export class AppointmentsService {
 
   findAll() {
     return this.prismaService.appointment.findMany({
-      // include: {
-      //   exam: true, // inclui dados do exame relacionado (opcional)
-      // },
+      include: {
+        exam: {
+          select: {
+            name: true,
+          },
+        },
+      },
     });
   }
 
